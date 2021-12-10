@@ -11,7 +11,6 @@
 		<small>Curso de Básico de PHP - Prof. Ivan Lourenço Gomes</small>
 
 		
-		<h3>Meus Cursos</h3>
 			<?php $curos = array(
 					"Excel"=> array(
 						"n_alunos" => 400,
@@ -30,8 +29,32 @@
 						"titulo" => "Programe em Python",
 						"url" => "http://www.udemy.com",
 						"eval" => 90
+					),
+					"Javascript"=> array(
+						"n_alunos" => 280,
+						"titulo" => "Javascript do zero",
+						"url" => "http://www.udemy.com",
+						"eval" => 90
 					)
 				); ?>
+
+			<h3>Meus Cursos</h3>
+
+			<ul>
+
+				<?php foreach ($curos as $item) { ?>
+
+					<li>
+						<a href="<?php echo $item['url']; ?>"><?php echo $item['titulo'] ?></a><br>
+						<?php
+						 echo $item['n_alunos'] . 'alunos'.' / ' . 
+						 $item['aval'].'avaliações'; 
+						?>
+					</li><br>
+
+				<?php } ?>
+
+			</ul>
 
 			<h4>Conteúdo do Array: </h4>
 			<p><?php echo $curos['Curso1'] ?></p>

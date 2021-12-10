@@ -12,17 +12,11 @@
 
 		<h3>True ou False?</h3><br>
 		
-		<p></p>
+		<?php $teste = 30 > 20; ?>
 
-
-
-
-
-
-
+		<p><?php echo var_dump($teste); ?></p>
 
 		<?php include 'functions/bottom_index.php'; ?>
-
 
 	</body>
 

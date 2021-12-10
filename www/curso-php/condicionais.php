@@ -44,8 +44,19 @@
 
 			<?php foreach ($produtos as $item) { ?>
 
-			<option><?php echo $item['nome']; ?></option>
-
+			<option 
+				<?php if ($item['estoque'] == 0) {echo 'disabled';} ?>>
+				<?php echo $item['nome']; ?>
+				<?php 
+				   if ($item['estoque'] == 0) {
+						echo ' (Produto indisponível)';
+				   } elseif ($item['estoque'] == 1) {
+					   echo ' (Última unidade em estoque)';
+				   } else {
+					   echo ' (Em estoque)';
+				   }
+				?>
+			</option>
 			<?php } ?>
 			
 		</select>

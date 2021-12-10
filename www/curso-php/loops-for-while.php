@@ -12,11 +12,20 @@
 
 		<h3>Selecione o ano de nascimento:</h3>
 
+		<?php 
+			$ano_atual = date('Y');
+			$ano = $ano_atual;
+		?>
+
 		<select>
 			<option>Selecione o ano</option>
-			<option>2017</option>
-			<option>2016</option>
-			<option>2015</option>
+			
+			<?php while ($ano >= 1990) { ?>
+
+				<option><?php echo $ano; ?></option>
+				<?php $ano = $ano - 1; ?>
+
+			<?php } ?>
 		</select>
 
 		<h3>Selecione o ano estimado de aposentadoria:</h3>

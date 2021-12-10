@@ -43,16 +43,30 @@
 
 		?>
 
+	<h3>Array Push</h3>
 
-		<h3>Array Push</h3>
-			
-		<?php 
+	<?php 
+		$aluno_novo = array();
+		$aluno_novo['matricula'] = '98866';
+		$aluno_novo['nome'] = 'Carla Pereira';
+		$aluno_novo['ano_nasc'] = 1986;
+		$aluno_novo['cidade'] = 'Fortaleza';
+		array_push($alunos, $aluno_novo);
 
-		?>
+		$alunos_90 = array();
 
-		<h4>Alunos Nascidos depois de 1990: </h4>
-		<br>
-		<pre></pre>
+		foreach ($alunos as $aluno) {
+			if($aluno['ano_nasc'] >= 1990) {
+				$alunos_90[$aluno['matricula']] = array();
+				$alunos_90[$aluno['matricula']]['nome'] = $aluno['nome'];
+				$alunos_90[$aluno['matricula']]['ano_nasc'] = $aluno['ano_nasc'];
+			}
+		}
+	?>
+
+	<h4>Alunos Nascidos depois de 1990: </h4>
+	<br>
+	<pre><?php print_r($alunos_90) ?></pre>
 
 
 

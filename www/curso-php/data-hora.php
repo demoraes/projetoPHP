@@ -24,7 +24,8 @@
 		<p>
 
 			<?php
-				
+				$agora = time();
+				echo date("d/m/y",$agora);
 			?>
 			
 		</p>
@@ -34,7 +35,8 @@
 
 			<?php
 				
-				
+				$nascimento = mktime(0,0,0,5,30,2021);
+				echo date("d m y",$nascimento);
 				
 			?>
 
@@ -46,7 +48,8 @@
 		<h3>Função strtotime</h3>
 
 			<?php
-				
+				$outro_nome = strtotime("now + 1 weeks");
+				echo date("d m y",$outro_nome);
 			?>
 
 		<p>

@@ -28,7 +28,8 @@
 
 
 
-		<h3>Componente galeria de fotos</h3>
+		<h3>Componente galeria de fotos1</h3>
+
 		<?php
 
 			$photoGallery = array (
@@ -41,16 +42,28 @@
 			);
 
 		?>
+	
 		
-		<div class="gallery-001">
+		<?php include 'components/gallery-001.php' ?>
 
-			<?php foreach ($photoGallery as $photo) { ?>
+		<?php
 
-				<img src="<?php echo $photo; ?>" alt="galeria-fotos">
+			$photoGallery = array (
+				
+				'img/prato_1.jpg',
+				'img/prato_2.jpg',
+				'img/prato_3.jpg',
+				'img/prato_8.jpg'
 
-			<?php } ?>
+			);
 
-		</div>
+		?>
+	
+
+		<h3>Componente galeria de fotos2</h3>
+	
+		
+		<?php include 'components/gallery-001.php' ?>
 
 		
 

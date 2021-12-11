@@ -16,7 +16,7 @@
 
 		<h3>$_SERVER</h3>
 
-		<p><?php ?></p>
+		<pre><?php var_dump($_SERVER); ?></pre>
 
 
 
@@ -27,10 +27,15 @@
 		$msg = 'hello world';
 		$bye = 'bye bye world';
 
+		function mensagem() {
+			echo $GLOBALS['msg'];
+		}
+
+		mensagem();
+
 		?>
 
-		<p><?php ?></p>
-
+<pre><?php echo($GLOBALS['bye']); ?></pre>
 
 		
 

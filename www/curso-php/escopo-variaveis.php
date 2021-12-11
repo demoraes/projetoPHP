@@ -1,4 +1,4 @@
-	<?php 
+ 	<?php 
 		include 'header.php';
 		include 'functions/functions.php';
 		$aula_atual = 'escopo-variaveis';

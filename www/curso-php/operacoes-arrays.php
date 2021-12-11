@@ -78,18 +78,24 @@
 
 		<h4>Matrícula dos Alunos Nascidos depois de 1990: </h4>
 		<br>
-		<pre></pre>
+		<pre><?php print_r(array_keys($alunos_90)); ?></pre>
 
 
 
 
 		<h3>In Array</h3>
 
+		<?php $matricula = '98837'; ?>
+
 		<h4>Busca de aluno por matrícula: </h4>
 		<br>
-		<p></p>
-
-
+		<?php if(in_array($matricula,array_keys($alunos_90))) { ?>
+		<p><?php echo 'A matrícula ' . $matricula . ' pertence ao aluno ' . 
+		$alunos_90[$matricula]['nome'].', nascido(a) no ano de ' . $alunos_90[$matricula]['ano_nasc'].'.'; 
+		?></p>
+		<?php } else { ?>
+			<p><?php echo 'A matrícula ' . $matricula . ' não foi encontrada. '; ?></p>
+		<?php } ?>
 		
 
 		

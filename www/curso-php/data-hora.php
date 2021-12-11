@@ -25,7 +25,7 @@
 
 			<?php
 				$agora = time();
-				echo date("d/m/y",$agora);
+				echo date("d/m/Y",$agora);
 			?>
 			
 		</p>
@@ -72,7 +72,7 @@
 		<h3>Fuso horário</h3>
 
 			<?php
-				
+				echo date_default_timezone_get();
 			?>			
 
 		<p>
@@ -84,7 +84,15 @@
 		<h3>Cálculos com data e hora</h3>
 
 			<?php
+				$data_entrega = strtotime('25 dec 2017');
+				$data_esperada = strtotime('24 dec 2017');
 				
+				if($data_entrega > $data_esperada) {
+					$atraso = ($data_entrega-$data_esperada) / 60 / 60 / 24;
+					echo 'Produto entregue com atraso de ' . $atraso . ' dias.';
+				} else {
+					echo 'Produto entregue no prazo';
+				}
 			?>
 
 		<p>

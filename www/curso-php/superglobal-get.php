@@ -18,7 +18,7 @@
 		<h3>$_GET</h3>
 
 
-		<p><?php  ?></p>
+		<p><?php echo($_GET['item']) ?></p>
 		<br>
 
 
@@ -59,15 +59,15 @@
 		<?php  ?>
 
 		<h4>Produto: </h4>
-		<p><?php  ?></p>
+		<p><?php echo $produtos[$_GET['item']]['nome']; ?></p>
 		<br>
 		
 		<h4>Descrição: </h4>
-		<p><?php  ?></p>
+		<p><?php echo $produtos[$_GET['item']]['descricao']; ?></p>
 		<br>
 		
 		<h4>Calorias: </h4>
-		<p><?php  ?></p>
+		<p><?php echo $produtos[$_GET['item']]['calorias']; ?></p>
 		<br>
 
 		<h4><u>Conheça nossos produtos</u></h4><br>

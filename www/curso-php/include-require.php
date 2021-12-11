@@ -17,11 +17,12 @@
 		<h3>Include</h3>
 		
 		<?php 
-
+			include 'file-to-include.php';
+			$temperatura = celsiusToFahrenheit(40);
 		?>
 
 
-		<p><?php ?></p>
+		<p><?php echo $temperatura ?></p>
 		<br>
 
 

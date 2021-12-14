@@ -1,4 +1,5 @@
 <!doctype html>
+<?php date_default_timezone_set('America/Campo_Grande'); ?>
 <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8" />

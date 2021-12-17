@@ -81,6 +81,39 @@
                 <div class="slider-cardapio">
                     <div class="slider-002 small-12 small-centered columns">
 
+                    <?php
+                        
+                        $server = 'mysql';
+                        $user = 'root';
+                        $password = 'rootPASS';
+                        $db_name = 'restaurante';
+
+                        $db_connect = @new mysqli($server,$user,$password,$db_name);
+                        mysqli_set_charset($db_connect,"utf8");
+
+                        if ($db_connect->connect_error) {
+                            echo 'Falha: ' . $db_connect->connect_error;
+                            print_r($db_connect);
+                        } else {
+                            echo 'Conexão feita com sucesso' . '<br><br>';
+                            $sql = "SELECT * FROM pratos WHERE destaque = 1";
+                            $result = $db_connect->query($sql);
+                            
+                            if($result->num_rows > 0) {
+
+                                while($row = $result->fetch_assoc()) {
+                                    echo '<pre>';
+                                    print_r($row);
+                                    echo '</pre>';
+                                }
+
+                            } else {
+                                'Não há destaques';
+                            }
+                        }    
+                    
+                    ?>   
+
                         <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
                             <div class="cardapio-item">
                                 <a href="camarao-alho.html">
@@ -163,9 +196,7 @@
                                     
                                 </a>
                             </div>
-                        </div>
-
-                       
+                        </div>    
                 
                     </div>
                 </div>

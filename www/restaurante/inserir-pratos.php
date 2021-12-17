@@ -144,17 +144,17 @@
 
     <?php
         
-        $server = '127.0.0.1';
+        $server = 'mysql';
         $user = 'root';
         $password = 'rootPASS';
         $db_name = 'restaurante';
-        $port = '';
 
-        $db_connect = @new mysqli($server,$user,$password,$db_name,$port);
+        $db_connect = @new mysqli($server,$user,$password,$db_name);
         mysqli_set_charset($db_connect,"utf8");
 
         if ($db_connect->connect_error) {
             echo 'Falha: ' . $db_connect->connect_error;
+            print_r($db_connect);
         } else {
             echo 'Conexão feita com sucesso' . '<br><br>';
 
@@ -173,7 +173,7 @@
                         
                      if($db_connect->query($sql)) {
                          echo $nome . " inserido com sucesso" . '<br><br>';
-                         $db_connect->close();
+                       
                      } else {
                          echo "Não foi possivel inserir" . $nome . '<br>';
                          echo mysqli_error($db_connect) . '<br><br>';
@@ -184,40 +184,6 @@
                     
              }
 
-            
-        }
-
-
-        // if ($db_connect->connect_error) {
-        // echo 'Falha: ' . $db_connect->connect_error;
-        // } else {
-        //     echo 'Conexão feita com sucesso' . '<br><br>';
-
-        //     foreach ($pratos as $prato) {
-        //         $codigo = $prato['codigo'];
-        //         $nome = $prato['nome'];
-        //         $categoria = $prato['categoria'];
-        //         $descr = $prato['descr'];
-        //         $preco = $prato['preco'];
-        //         $calorias = $prato['calorias'];
-        //         $destaque = $prato['destaque'];
-
-        //         $sql = "INSERT INTO pratos(
-        //             codigo,nome,categoria,descricao,preco,calorias,destaque)
-        //             VALUES ('$codigo','$nome','$categoria','$descr','$preco','$calorias','$destaque')";
-                
-        //         if($db_connect->query($sql)) {
-        //             echo $nome . " inserido com sucesso" . '<br><br>';
-        //             $db_connect->close();
-        //         } else {
-        //             echo "Não foi possivel inserir" . $nome . '<br>';
-        //             echo mysqli_error($db_connect) . '<br><br>';
-        //         }
-
-        //         echo '<br>';
-        //     }
-            
-        // }
 
        
     ?>   

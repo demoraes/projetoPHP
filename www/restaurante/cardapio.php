@@ -11,6 +11,41 @@
                     <hr></hr>
                 </div>
 
+                     <?php
+                        
+                        $server = 'mysql';
+                        $user = 'root';
+                        $password = 'rootPASS';
+                        $db_name = 'restaurante';
+
+                        $db_connect = @new mysqli($server,$user,$password,$db_name);
+                        mysqli_set_charset($db_connect,"utf8");
+
+                        if ($db_connect->connect_error) {
+                            echo 'Falha: ' . $db_connect->connect_error;
+                            print_r($db_connect);
+                        } else {
+                            echo 'Conexão feita com sucesso' . '<br><br>';
+                            $sql = "SELECT DISTINCT categoria FROM pratos";
+                            $result = $db_connect->query($sql);
+                            
+                            if($result->num_rows >= 0) {
+
+                                while($row = $result->fetch_assoc()) { 
+
+                                    $categoria = $row['categoria'];
+                                    echo $categoria;
+                                    echo '<br>';
+
+                                }
+
+                            } else {
+                                'Não há destaques';
+                            }
+                        }    
+                    
+                    ?>    
+
                 <div class="category-slider small-12 columns no-padding">
                     <h4>Entradas</h4>
 

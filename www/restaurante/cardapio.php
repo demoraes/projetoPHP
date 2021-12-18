@@ -84,7 +84,7 @@
                             <?php }
 
                             } else {
-                                'Não há destaques';
+                               echo 'Não há destaques';
                             }
                         }    
                     

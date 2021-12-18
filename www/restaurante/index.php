@@ -152,7 +152,7 @@
 
                 <div class="reservation-form small-12 columns no-padding">
 
-                    <form action="index.php" method="post">
+                    <form action="index.php#contact-us" method="post">
 
                         <div class="form-part1 small-12 large-8 xlarge-7 columns no-padding">
                     
@@ -179,6 +179,15 @@
 
                     <?php 
 
+                        // Inserir Arquivos do PHPMailer
+                        require 'phpmailer/Exception.php';
+                        require 'phpmailer/PHPMailer.php';
+                        require 'phpmailer/SMTP.php';
+
+                        // Usar as classes sem o namespace
+                        use PHPMailer\PHPMailer\PHPMailer;
+                        use PHPMailer\PHPMailer\Exception;
+
                         function clean_input($input) {
                             $input = trim($input);
                             $input = stripslashes($input);
@@ -201,83 +210,86 @@
                             $telefone = clean_input($telefone);
                             $data = clean_input($data);
                             $num_pessoas = clean_input($num_pessoas);
-                        }
 
-                        // Inserir Arquivos do PHPMailer
-                        require 'phpmailer/Exception.php';
-                        require 'phpmailer/PHPMailer.php';
-                        require 'phpmailer/SMTP.php';
+                             // Criação do Objeto da Classe PHPMailer
+                            $mail = new PHPMailer(true); 
 
-                        // Usar as classes sem o namespace
-                        use PHPMailer\PHPMailer\PHPMailer;
-                        use PHPMailer\PHPMailer\Exception;
+                            $texto_msg = 'E-mail enviado do sistema de reservas do site' . '<br><br>' . 
+                            'Nome: ' . $nome . '<br>' .
+                            'E-mail: ' . $email . '<br>' .
+                            'Telefone: ' . $telefone . '<br>' .
+                            'Data: ' . $data . '<br>' .
+                            'Número de pessoas: ' . $num_pessoas . '<br>' .
+                            'Mensagem: ' . $mensagem . '<br>';
 
-                        // Criação do Objeto da Classe PHPMailer
-                        $mail = new PHPMailer(true); 
+                            $mail = new PHPMailer(true);
+                            $mail->CharSet="UTF-8";
 
-
-                        try {
-                            
-                            //Retire o comentário abaixo para soltar detalhes do envio 
-                            // $mail->SMTPDebug = 2;                                
-                            
-                            // Usar SMTP para o envio
-                            $mail->isSMTP();                                      
-
-                            // Detalhes do servidor (No nosso exemplo é o Google)
-                            $mail->Host = 'smtp.gmail.com';
-
-                            // Permitir autenticação SMTP
-                            $mail->SMTPAuth = true;                               
-
-                            // Nome do usuário
-                            $mail->Username = 'cbgabriel2016@gmail.com';        
-                            // Senha do E-mail         
-                            $mail->Password = 'vuj@d33xp1r10n';                           
-                            // Tipo de protocolo de segurança
-                            $mail->SMTPSecure = 'tls';   
-
-                            // Porta de conexão com o servidor                        
-                            $mail->Port = 587;
-
-                            
-                            // Garantir a autenticação com o Google
-                            $mail->SMTPOptions = array(
-                                'ssl' => array(
-                                    'verify_peer' => false,
-                                    'verify_peer_name' => false,
-                                    'allow_self_signed' => true
-                                )
-                            );
-
-                            // Remetente
-                            $mail->setFrom('from@example.com', 'Mailer');
-                            
-                            // Destinatário
-                            $mail->addAddress('cbgabriel2016@gmail.com', 'Joe User');
-
-                            // Conteúdo
-
-                            // Define conteúdo como HTML
-                            $mail->isHTML(true);                                  
-
-                            // Assunto
-                            $mail->Subject = 'Insira o assunto';
-                            $mail->Body    = 'Insira o texto do e-mail';
-                            $mail->AltBody = 'Formato alternativo em texto puro para emails que não aceitam HTML';
-
-                            // Enviar E-mail
-                            $mail->send();
-                            echo 'Mensagem enviada com sucesso';
-                        } catch (Exception $e) {
-                            echo 'A mensagem não foi enviada pelo seguinte motivo: ', $mail->ErrorInfo;
-                        }
+                            try {
                                 
+                                //Retire o comentário abaixo para soltar detalhes do envio 
+                                // $mail->SMTPDebug = 2;                                
+                                
+                                // Usar SMTP para o envio
+                                $mail->isSMTP();                                      
 
-                
-                    ?>
+                                // Detalhes do servidor (No nosso exemplo é o Google)
+                                $mail->Host = 'smtp.gmail.com';
+
+                                // Permitir autenticação SMTP
+                                $mail->SMTPAuth = true;                               
+
+                                // Nome do usuário
+                                $mail->Username = 'cbgabriel2016@gmail.com';        
+                                // Senha do E-mail         
+                                $mail->Password = 'vuj@d33xp1r10n';                           
+                                // Tipo de protocolo de segurança
+                                $mail->SMTPSecure = 'tls';   
+
+                                // Porta de conexão com o servidor                        
+                                $mail->Port = 587;
+
+                                
+                                // Garantir a autenticação com o Google
+                                $mail->SMTPOptions = array(
+                                    'ssl' => array(
+                                        'verify_peer' => false,
+                                        'verify_peer_name' => false,
+                                        'allow_self_signed' => true
+                                    )
+                                );
+
+                                // Remetente
+                                $mail->setFrom($email, $nome);
+                                
+                                // Destinatário
+                                $mail->addAddress('cbgabriel2016@gmail.com', 'Resto Bar');
+
+                                // Conteúdo
+
+                                // Define conteúdo como HTML
+                                $mail->isHTML(true);                                  
+
+                                // Assunto
+                                $mail->Subject = 'Novo pedido de reserva';
+                                $mail->Body    = $texto_msg;
+                                $mail->AltBody = $texto_msg;
+
+                                // Enviar E-mail
+                                $mail->send();
+                                $confirmacao = 'Mensagem enviada com sucesso';
+                                } catch (Exception $e) {
+                                    $confirmacao =  'A mensagem não pode ser enviada';
+                                }
+                                        
+                            }
+                    
+                        ?>
 
                 </div>
+                <?php if($_SERVER['REQUEST_METHOD'] == 'POST') { ?>
+                     <p><?php echo $confirmacao ?></p>
+                <?php } ?>
             </div>
         </div>
 
